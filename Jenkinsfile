@@ -4,25 +4,25 @@ pipeline {
     stage('Service node'){
     agent any
     steps{
-        sh "kubectl apply -f create-service.yaml"
+        sh "kubectl apply -f /var/lib/jenkins/workspace/redis-ha-deploy/create-service.yaml"
       }
     }
     stage('Master node'){
     agent any
     steps{
-      sh "kubectl apply -f create-master-deployment.yaml"
+      sh "kubectl apply -f /var/lib/jenkins/workspace/redis-ha-deploy/create-master-deployment.yaml"
     }
   }
     stage('Sentinal node'){
     agent any
     steps{
-      sh "kubectl apply -f create-sentinel-deployment.yaml"
+      sh "kubectl apply -f /var/lib/jenkins/workspace/redis-ha-deploy/create-sentinel-deployment.yaml"
     }
   }
     stage('Slave node'){
     agent any
     steps{
-      sh "kubectl apply -f create-slave-deployment.yaml"
+      sh "kubectl apply -f /var/lib/jenkins/workspace/redis-ha-deploy/create-slave-deployment.yaml"
     }
   }
  }
